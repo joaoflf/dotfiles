@@ -6,7 +6,7 @@
 
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
+dir=$HOME/dotfiles                    # dotfiles directory
 files="vimrc gitconfig zshrc tmux.conf"    # list of files/folders to symlink in homedir
 
 ##########
@@ -19,9 +19,9 @@ echo "done"
 # Create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $files; do
     echo "Deleting existing $file"
-    rm ~/.$file
+    rm $HOME/.$file
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+    ln -s $dir/$file $HOME/.$file
 done
 
 install_zsh () {
@@ -44,3 +44,7 @@ fi
 }
 
 install_zsh
+
+#install plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+

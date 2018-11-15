@@ -2,10 +2,11 @@
 ZSH_THEME="robbyrussell"
 
 plugins=(
-  git
+  git,
+  zsh-autosuggestions
 )
 
-. ~/dotfiles/z.sh
+. $HOME/dotfiles/z.sh
 
 # -- Exports --
 export ZSH="$HOME/.oh-my-zsh"
