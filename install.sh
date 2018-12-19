@@ -57,7 +57,6 @@ mkdir $XDG_CONFIG_HOME/nvim
 ln -s $dir/init.vim $XDG_CONFIG_HOME/nvim/init.vim
 
 #install vim plug
-curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-vim +slient +VimEnter +PlugInstall +qall
+nvim +slient +VimEnter +PlugInstall +qall
