@@ -1,11 +1,13 @@
 "-- Basic --
-set nocompatible    "don't bother with back compatibility
 filetype plugin on
 
 "-- Plugins (via vim-plug) -- 
 call plug#begin('~/.vim/plugged')   " Specify a directory for plugins
-Plug 'rakr/vim-one' " Theme
+Plug 'neomake/neomake'
+Plug 'rakr/vim-one'
 call plug#end() " Initialize plugin system
+
+call neomake#configure#automake('nrwi', 500)
 
 "-- Colors --
 set termguicolors   " work nicely with tmux
