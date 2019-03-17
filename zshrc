@@ -22,3 +22,5 @@ export PATH="/usr/local/bin:$PATH"
 # -- Aliases -- 
 alias g="git"
 alias vim="nvim"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

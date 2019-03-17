@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=$HOME/dotfiles                    # dotfiles directory
-files="vimrc gitconfig zshrc tmux.conf"    # list of files/folders to symlink in homedir
+files="gitconfig zshrc tmux.conf"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -24,7 +24,6 @@ for file in $files; do
     ln -s $dir/$file $HOME/.$file
 done
 
-
 install_zsh () {
 # If zsh isn't installed, get the platform of the current machine
 if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
@@ -35,10 +34,6 @@ else
     if [[ $platform == 'Linux' ]]; then
         sudo apt-get install zsh
         install_zsh
-    # If the platform is OS X, tell the user to install zsh :)
-    elif [[ $platform == 'Darwin' ]]; then
-        echo "Please install zsh, then re-run this script!"
-        exit
     fi
 fi
 

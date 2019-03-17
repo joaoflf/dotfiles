@@ -5,9 +5,28 @@ filetype plugin on
 call plug#begin('~/.vim/plugged')   " Specify a directory for plugins
 Plug 'neomake/neomake'
 Plug 'rakr/vim-one'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run the install script
+Plug 'junegunn/fzf.vim'
+Plug 'sbdchd/neoformat'
 call plug#end() " Initialize plugin system
+nnoremap <silent> <C-P> :FZF<cr>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 call neomake#configure#automake('nrwi', 500)
+let g:neomake_python_pylint_exe = ['mypy', 'pep8']
+let g:neoformat_python_autopep8 = {
+    \ 'exe': 'autopep8',
+    \ 'args': ['-s 4', '-E'],
+    \ 'replace': 1,
+    \ 'stdin': 1,
+    \ 'env': ["DEBUG=1"],
+    \ 'valid_exit_codes': [0, 23],
+    \ 'no_append': 1}
+
+let g:neoformat_enabled_python = ['autopep8']
 
 "-- Colors --
 set termguicolors   " work nicely with tmux
@@ -33,9 +52,15 @@ filetype indent on  " load filetype-specific indent files
 set wildmenu        " visual autocomplete for command menu
 set lazyredraw      " redraw only when we need to.
 set showmatch       " highlight matching [{()}]
+set relativenumber  " turn relative line numbers on
+set rnu
 
 " -- Keys remap --
 let mapleader= ","   " leader is comma
+noremap <Up> <Nop>   " Disable arrows
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 " -- Search -- 
 set incsearch       " search as characters are entered
