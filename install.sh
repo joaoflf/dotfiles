@@ -55,3 +55,14 @@ ln -s $dir/init.vim $XDG_CONFIG_HOME/nvim/init.vim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +slient +VimEnter +PlugInstall +qall
+
+# install tools
+wget https://github.com/sharkdp/fd/releases/download/v7.3.0/fd-musl_7.3.0_amd64.deb
+sudo dpkg -i fd-musl_7.3.0_amd64.deb
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+yes | $HOME/.fzf/install
+yes | sudo apt-get install mosh
+wget http://savannah.nongnu.org/download/atool/atool_0.37.0-1_all.deb
+sudo dpkg -i atool_0.37.0-1_all.deb
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb
+sudo dpkg -i ripgrep_0.10.0_amd64.deb

@@ -1,5 +1,5 @@
 ## -- UI and Plugins --
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 plugins=(
   git,
@@ -22,5 +22,14 @@ export PATH="/usr/local/bin:$PATH"
 # -- Aliases -- 
 alias g="git"
 alias vim="nvim"
+alias cat="bat"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# setup pure theme
+fpath+=('$PWD/functions')
+fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
+autoload -U promptinit; promptinit
+# optionally define some options
+PURE_CMD_MAX_EXEC_TIME=10
+prompt pure
