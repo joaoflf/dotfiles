@@ -8,6 +8,8 @@ Plug 'rakr/vim-one'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run the install script
 Plug 'junegunn/fzf.vim'
 Plug 'sbdchd/neoformat'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 call plug#end() " Initialize plugin system
 nnoremap <silent> <C-P> :FZF<cr>
 let g:fzf_action = {
@@ -27,6 +29,11 @@ let g:neoformat_python_autopep8 = {
     \ 'no_append': 1}
 
 let g:neoformat_enabled_python = ['autopep8']
+
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+nnoremap <M-m> :MarkdownPreview<CR>
 
 "-- Colors --
 set termguicolors   " work nicely with tmux
@@ -54,6 +61,7 @@ set lazyredraw      " redraw only when we need to.
 set showmatch       " highlight matching [{()}]
 set relativenumber  " turn relative line numbers on
 set rnu
+set clipboard+=unnamedplus "shared clipboard
 
 " -- Keys remap --
 let mapleader= ","   " leader is comma
