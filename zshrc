@@ -14,21 +14,17 @@ export TERM=xterm-256color
 export PATH="/usr/local/bin:$PATH"
 export BUNDLE_GITHUB__COM=94ae125ba619925755c3f5ef881c92b6df991efe:x-oauth-basic
 
-
 ## -- Aliases -- 
 alias sudo="sudo "
 alias g="git"
 alias vim="nvim"
 alias cat="bat"
 
-
-# set fuzzy finder
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-
+fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 autoload -U promptinit; promptinit
 prompt pure
 
 # Set vim mode
 set -o vi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
