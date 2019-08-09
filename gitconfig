@@ -1,5 +1,5 @@
 [user]
-	name = joao.fernandes
+	name = joaoflf
 	email = fernandesj@protonmail.com
 
 [alias]
@@ -56,3 +56,5 @@
 [diff]
     prompt = false
 
+[url "https://94ae125ba619925755c3f5ef881c92b6df991efe:x-oauth-basic@github.com/Talkdesk/"]
+	insteadOf = https://github.com/Talkdesk/

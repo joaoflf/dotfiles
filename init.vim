@@ -10,6 +10,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'sbdchd/neoformat'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+Plug 'arcticicestudio/nord-vim'
 call plug#end() " Initialize plugin system
 nnoremap <silent> <C-P> :FZF<cr>
 let g:fzf_action = {
@@ -37,8 +38,8 @@ nnoremap <M-m> :MarkdownPreview<CR>
 
 "-- Colors --
 set termguicolors   " work nicely with tmux
-colorscheme one
-set background=dark 
+colorscheme nord
+"set background=dark 
 syntax enable       " enable syntax processing
 autocmd BufRead,BufNew *.md setf markdown
 
