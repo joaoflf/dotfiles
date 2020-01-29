@@ -1,30 +1,37 @@
-## -- UI and Plugins --
-ZSH_THEME=""
+# --- zsh settings ---
 
-plugins=(
-  zsh-autosuggestions
-)
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=100000
+SAVEHIST=HISTSIZE
+setopt autocd # cd by typing directory name
+setopt correct_all # autocorrect commands
+setopt auto_list # automatically list choices
+setopt always_to_end # move cursor to end if word has one match
+set -o vi # vi mode
 
-. $HOME/dotfiles/z.sh
+#launch tmux on startup
+if [ -z "$TMUX" ]
+then
+    tmux attach -t TMUX || tmux new -s TMUX
+fi
 
-## -- Exports --
-export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
-export TERM=xterm-256color
-export PATH="/usr/local/bin:$PATH"
-export BUNDLE_GITHUB__COM=94ae125ba619925755c3f5ef881c92b6df991efe:x-oauth-basic
+# --- Plugins ---
 
-## -- Aliases -- 
-alias sudo="sudo "
-alias g="git"
-alias vim="nvim"
-alias cat="bat"
-
-fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
+# Pure theme
+fpath+=("$HOME/.zsh/pure")
 autoload -U promptinit; promptinit
 prompt pure
 
-# Set vim mode
-set -o vi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # launch fuzzy finder
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# load antibody plugins
+source <(antibody init)
+antibody bundle < $HOME/.zsh_plugins.txt
+
+
+## --- Aliases ---
+alias sudo="sudo "
+alias g="git"
+alias cat="bat"
+alias vim="nvim"
+alias l="ls -la"
