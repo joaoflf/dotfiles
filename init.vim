@@ -19,14 +19,11 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 call neomake#configure#automake('nrwi', 500)
-let g:neomake_python_pylint_exe = ['mypy', 'pep8']
+let g:neomake_python_pylint_exe = ['mypy', 'yapf', 'flake8']
 let g:neoformat_python_autopep8 = {
-    \ 'exe': 'autopep8',
-    \ 'args': ['-s 4', '-E'],
+    \ 'exe': 'yapf',
     \ 'replace': 1,
     \ 'stdin': 1,
-    \ 'env': ["DEBUG=1"],
-    \ 'valid_exit_codes': [0, 23],
     \ 'no_append': 1}
 
 let g:neoformat_enabled_python = ['autopep8']
@@ -89,5 +86,3 @@ nnoremap <C-H> <C-W><C-H>
 "-- Find files --
 set path+=**        " enable fuzzy search
 set wildmenu        " display results on tab complete
-
-
