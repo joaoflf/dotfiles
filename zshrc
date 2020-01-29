@@ -12,7 +12,7 @@ set -o vi # vi mode
 #launch tmux on startup
 if [ -z "$TMUX" ]
 then
-    tmux attach -t TMUX || tmux new -s TMUX
+    tmux -u attach -t TMUX || tmux -u new -s TMUX
 fi
 
 # --- Plugins ---
@@ -35,3 +35,4 @@ alias g="git"
 alias cat="bat"
 alias vim="nvim"
 alias l="ls -la"
+alias tmux='tmux -u'
