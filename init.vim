@@ -34,7 +34,7 @@ augroup END
 nnoremap <M-m> :MarkdownPreview<CR>
 
 "-- Colors --
-set termguicolors   " work nicely with tmux
+"set termguicolors   " work nicely with tmux
 colorscheme nord
 "set background=dark 
 syntax enable       " enable syntax processing
