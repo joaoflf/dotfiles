@@ -8,8 +8,9 @@ setopt correct_all # autocorrect commands
 setopt auto_list # automatically list choices
 setopt always_to_end # move cursor to end if word has one match
 set -o vi # vi mode
+TERM="xterm-256color"
 
-#launch tmux on startup
+#launc tmux on startup
 if [ -z "$TMUX" ]
 then
     tmux -u attach -t TMUX || tmux -u new -s TMUX
