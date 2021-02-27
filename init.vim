@@ -1,79 +1,73 @@
-"-- Basic --
-filetype plugin on
-
+"-------------------------------------------------
 "-- Plugins (via vim-plug) -- 
+"-------------------------------------------------
+
 call plug#begin('~/.vim/plugged')   " Specify a directory for plugins
 Plug 'neomake/neomake'
-Plug 'rakr/vim-one'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run the install script
 Plug 'junegunn/fzf.vim'
 Plug 'sbdchd/neoformat'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-Plug 'arcticicestudio/nord-vim'
+Plug 'chriskempson/base16-vim'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
 call plug#end() " Initialize plugin system
-nnoremap <silent> <C-P> :FZF<cr>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
 
-call neomake#configure#automake('nrwi', 500)
-let g:neomake_python_pylint_exe = ['mypy', 'yapf', 'flake8']
-let g:neoformat_python_autopep8 = {
-    \ 'exe': 'yapf',
-    \ 'replace': 1,
-    \ 'stdin': 1,
-    \ 'no_append': 1}
-
-let g:neoformat_enabled_python = ['autopep8']
-
-augroup pandoc_syntax
-    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-augroup END
-nnoremap <M-m> :MarkdownPreview<CR>
+"-------------------------------------------------
+" -- UI -- 
+"-------------------------------------------------
 
 "-- Colors --
-colorscheme nord
-syntax enable       " enable syntax processing
-autocmd BufRead,BufNew *.md setf markdown
+let base16colorspace=256  " Access colors present in 256 colorspace
+set termguicolors     " enable true colors support
+colorscheme base16-material
+let g:airline_theme= "base16_spacemacs"
+let g:airline#extensions#branch#enabled = 1
 
-"-- Spaces & Tabs --
+" -- Spaces & Tabs --
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 set shiftwidth=4    " number of spaces in autoindent
 set textwidth=79
-set autoindent
 
-
-" -- UI --
+" -- Other --
 set number          " show line numbers
 set showcmd         " show command in bottom bar
 set cursorline      " highlight current line
 filetype indent on  " load filetype-specific indent files
-set wildmenu        " visual autocomplete for command menu
 set lazyredraw      " redraw only when we need to.
 set showmatch       " highlight matching [{()}]
 set relativenumber  " turn relative line numbers on
 set rnu
 set clipboard+=unnamedplus "shared clipboard
 
+"-------------------------------------------------
 " -- Keys remap --
+"-------------------------------------------------
+
 let mapleader= ","   " leader is comma
-noremap <Up> <Nop>   " Disable arrows
+" disable arrows
+noremap <Up> <Nop> 
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-" -- Search -- 
-set incsearch       " search as characters are entered
-set hlsearch        " highlight matches
-
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
-" -- Splits --
+"-------------------------------------------------
+" -- Utilities --
+"-------------------------------------------------
+
+"" -- Splits --
 set splitright
 set splitbelow
 nnoremap <C-J> <C-W><C-J>  
@@ -84,3 +78,37 @@ nnoremap <C-H> <C-W><C-H>
 "-- Find files --
 set path+=**        " enable fuzzy search
 set wildmenu        " display results on tab complete
+
+"-- FZF Options -- 
+nnoremap <silent> <C-P> :FZF<cr>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+"-------------------------------------------------
+"-- Python plugin options --
+"-------------------------------------------------
+
+"-- Formatting and linting with neomake
+call neomake#configure#automake('nrwi', 500)
+let g:neomake_python_pylint_exe = ['mypy', 'yapf', 'flake8']
+let g:neoformat_python_autopep8 = {
+    \ 'exe': 'yapf',
+    \ 'replace': 1,
+    \ 'stdin': 1,
+    \ 'no_append': 1}
+let g:neoformat_enabled_python = ['autopep8']
+
+"-- Coc settings for jumping to defs aand show docs
+nmap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+nmap <leader>rn <Plug>(coc-rename)
+

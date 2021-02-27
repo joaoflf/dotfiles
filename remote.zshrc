@@ -5,11 +5,14 @@ HISTSIZE=100000
 SAVEHIST=HISTSIZE
 export LC_CTYPE=en_US.UTF-8
 setopt autocd # cd by typing directory name
-setopt correct_all # autocorrect commands
 setopt auto_list # automatically list choices
 setopt always_to_end # move cursor to end if word has one match
 set -o vi # vi mode
 TERM="xterm-256color"
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin/:/opt/cuda-10.2/bin/:$PATH"
+eval "$(pyenv init -)"
 
 # launch tmux on incoming ssh connection
 if [[ "$TMUX" == "" ]] &&
@@ -41,5 +44,5 @@ alias sudo="sudo "
 alias g="git"
 alias cat="bat"
 alias vim="nvim"
-alias l="ls -la"
+alias l="ls -la --color=auto"
 alias tmux='tmux -u'
