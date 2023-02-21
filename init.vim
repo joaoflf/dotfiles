@@ -11,8 +11,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'vim-airline/vim-airline'
@@ -85,30 +83,4 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
-
-"-------------------------------------------------
-"-- Python plugin options --
-"-------------------------------------------------
-
-"-- Formatting and linting with neomake
-call neomake#configure#automake('nrwi', 500)
-let g:neomake_python_pylint_exe = ['mypy', 'yapf', 'flake8']
-let g:neoformat_python_autopep8 = {
-    \ 'exe': 'yapf',
-    \ 'replace': 1,
-    \ 'stdin': 1,
-    \ 'no_append': 1}
-let g:neoformat_enabled_python = ['autopep8']
-
-"-- Coc settings for jumping to defs aand show docs
-nmap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-nmap <leader>rn <Plug>(coc-rename)
 
