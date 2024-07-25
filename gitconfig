@@ -1,6 +1,7 @@
 [user]
 	name = joaoflf
-	email = fernandesj@protonmail.com
+	email = joao.fernandes@five9.com 
+    #signingkey = A35BC4B2E026C9908B9F44072CBFD29DBC411A78
 
 [alias]
     # View abbreviated SHA, description, history graph, time and author
@@ -55,4 +56,7 @@
 	sslVerify = false
 [diff]
     prompt = false
-
+[pull]
+    rebase = true
+[commit]
+	gpgsign = false

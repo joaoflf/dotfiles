@@ -35,6 +35,10 @@ set softtabstop=4   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 set shiftwidth=4    " number of spaces in autoindent
 set textwidth=79
+augroup Markdown    " disable wrap on markdown files
+  autocmd!
+  autocmd FileType markdown set textwidth=0
+augroup END
 
 " -- Other --
 set number          " show line numbers

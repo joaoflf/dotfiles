@@ -1,11 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
-vim.keymap.set("n", "<C-Tab>", ":tabnext<CR>")
-vim.keymap.set("n", "<C-S-Tab>", ":tabprevious<CR>")
-vim.keymap.set("n", "<leader>t", ":tabnew<CR>")
-vim.keymap.set("n", "<leader>c", ":close<CR>")
-
 -- move highlighted
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -32,3 +27,4 @@ vim.keymap.set("n", "<leader>j", "<cmd>lnext<CR>zz")
 
 -- quick replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
