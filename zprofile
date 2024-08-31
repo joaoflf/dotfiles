@@ -7,6 +7,6 @@ setopt autocd # cd by typing directory name
 setopt correct_all # autocorrect commands
 setopt auto_list # automatically list choices
 setopt always_to_end # move cursor to end if word has one match
-TERM="xterm-256color"
+TERM="tmux-256color"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
