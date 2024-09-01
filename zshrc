@@ -9,14 +9,14 @@ alias start-zscaler="open -a /Applications/Zscaler/Zscaler.app --hide; sudo find
 alias kill-zscaler="find /Library/LaunchAgents -name '*zscaler*' -exec launchctl unload {} \;;sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl unload {} \;"
 
 # load antibody plugins
-source <(antibody init)
-antibody bundle < $HOME/dotfiles/zsh_plugins.txt
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote bundle < $HOME/dotfiles/zsh_plugins.txt >~/.zsh_plugins.zsh
+source ~/.zsh_plugins.zsh
 
 source <(fzf --zsh)
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source $(brew --prefix nvm)/nvm.sh
 
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
