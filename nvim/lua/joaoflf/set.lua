@@ -1,4 +1,4 @@
-vim.opt.nu= true
+vim.opt.nu = true
 vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4
@@ -15,6 +15,16 @@ vim.opt.incsearch = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.spell = true
+		vim.opt_local.spelllang = "en_us"
+		vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true, sp = "red" })
+	end,
+})
 
 vim.opt.swapfile = false
 vim.opt.backup = false
