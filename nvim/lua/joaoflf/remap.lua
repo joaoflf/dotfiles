@@ -22,9 +22,14 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- quickfix nav
 vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lprev<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lnext<CR>zz")
+
+-- split nav
+vim.keymap.set("n", "<leader>h", "<C-w><C-h>")
+vim.keymap.set("n", "<leader>j", "<C-w><C-j>")
+vim.keymap.set("n", "<leader>k", "<C-w><C-k>")
+vim.keymap.set("n", "<leader>l", "<C-w><C-l>")
 
 -- quick replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
