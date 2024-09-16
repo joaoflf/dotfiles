@@ -15,10 +15,59 @@ return {
 			dap.listeners.before.event_exited["dapui_config"] = function()
 				dapui.close()
 			end
+
+			dapui.setup({
+				layouts = {
+					{
+						elements = {
+							{
+								id = "stacks",
+								size = 0.25,
+							},
+							{
+								id = "watches",
+								size = 0.15,
+							},
+							{
+								id = "breakpoints",
+								size = 0.25,
+							},
+							{
+								id = "scopes",
+								size = 0.35,
+							},
+						},
+						position = "left",
+						size = 40,
+					},
+					{
+						elements = {
+							{
+								id = "console",
+								size = 0.5,
+							},
+							{
+								id = "repl",
+								size = 0.5,
+							},
+						},
+						position = "bottom",
+						size = 10,
+					},
+				},
+			})
 		end,
 	},
 	{
 		"mfussenegger/nvim-dap",
+		config = function()
+			vim.keymap.set("n", "<leader>dc", ":DapContinue<CR>")
+			vim.keymap.set("n", "<leader>ds", ":DapStepInto<CR>")
+			vim.keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>")
+			vim.keymap.set("n", "<leader>dh", function()
+				require("dap.ui.widgets").hover()
+			end)
+		end,
 	},
 	{
 		"mfussenegger/nvim-dap-python",
@@ -31,11 +80,6 @@ return {
 			local dap_python = require("dap-python")
 			local path = ".venv/bin/python"
 			dap_python.setup(path)
-
-			vim.keymap.set("n", "<leader>dc", ":DapContinue<CR>")
-			vim.keymap.set("n", "<leader>ds", ":DapStepInto<CR>")
-			vim.keymap.set("n", "<leader>dr", ":DapToggleRepl<CR>")
-			vim.keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>")
 		end,
 	},
 }
