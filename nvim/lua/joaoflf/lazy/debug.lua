@@ -15,6 +15,10 @@ return {
 			dap.listeners.before.event_exited["dapui_config"] = function()
 				dapui.close()
 			end
+			-- Keep UI open on error
+			dap.listeners.after.event_stopped["dapui_config"] = function()
+				dapui.open()
+			end
 
 			dapui.setup({
 				layouts = {
@@ -22,19 +26,19 @@ return {
 						elements = {
 							{
 								id = "stacks",
-								size = 0.25,
+								size = 0.20,
 							},
 							{
 								id = "watches",
-								size = 0.15,
+								size = 0.10,
 							},
 							{
 								id = "breakpoints",
-								size = 0.25,
+								size = 0.15,
 							},
 							{
 								id = "scopes",
-								size = 0.35,
+								size = 0.55,
 							},
 						},
 						position = "left",
@@ -78,8 +82,21 @@ return {
 		},
 		config = function()
 			local dap_python = require("dap-python")
+			local dap = require("dap")
 			local path = ".venv/bin/python"
 			dap_python.setup(path)
+			-- table.insert(dap.configurations.python, {
+			-- 	type = "python",
+			-- 	request = "launch",
+			-- 	name = "Python: Current File",
+			-- 	program = "${file}",
+			-- 	pythonPath = function()
+			-- 		return path
+			-- 	end,
+			-- 	stopOnEntry = false,
+			-- 	console = "integratedTerminal",
+			-- 	exceptionBreakpointFilters = { "raised", "uncaught" },
+			-- })
 		end,
 	},
 }

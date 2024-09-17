@@ -18,8 +18,6 @@ source <(fzf --zsh)
 export NVM_DIR="$HOME/.nvm"
 source $(brew --prefix nvm)/nvm.sh
 
-source $HOME/.cargo/env
-
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
@@ -34,14 +32,7 @@ if [ -f '/Users/joafer1/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/j
 #fix gpg issue
 export GPG_TTY=$(tty)
 
-# launch tmux on incoming ssh connection
-if [[ "$TMUX" == "" ]] &&
-        [[ "$SSH_CONNECTION" != "" ]]; then
-    WHOAMI=$(whoami)
-    if tmux has-session -t $WHOAMI 2>/dev/null; then
-    tmux -u -2 attach-session -t $WHOAMI
-    else
-        tmux -u  -2 new-session -s $WHOAMI
-    fi
+# Automatically start or attach to tmux session
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
 fi
-
