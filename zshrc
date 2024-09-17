@@ -18,6 +18,8 @@ source <(fzf --zsh)
 export NVM_DIR="$HOME/.nvm"
 source $(brew --prefix nvm)/nvm.sh
 
+source $HOME/.cargo/env
+
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
@@ -42,3 +44,4 @@ if [[ "$TMUX" == "" ]] &&
         tmux -u  -2 new-session -s $WHOAMI
     fi
 fi
+
