@@ -1,6 +1,18 @@
+# [user]
+# 	name = joaoflf
+# 	email = fernandesj@protonmail.com
+#
+# [includeIf "hasconfig:remote.*.url:git@gitlab.com:fivn/**"]
 [user]
-	name = joaoflf
-	email = fernandesj@protonmail.com
+    name = "Joao Fernandes"
+    email = joao.fernandes@five9.com
+    signingkey = "~/.ssh/id_ed25519"
+[commit]
+    gpgsign = true
+[gpg]
+    format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /Users/joafer1/.ssh/allowed_signers
 
 [alias]
     # View abbreviated SHA, description, history graph, time and author
@@ -57,5 +69,3 @@
     prompt = false
 [pull]
     rebase = true
-[commit]
-	gpgsign = false
